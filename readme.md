@@ -42,18 +42,20 @@ pip install -r requirements.txt
 
 
 # Weights and Trade-off
-download from [here](https://drive.google.com/drive/folders/1HuTt7UIp7gQsMiDvJwVuWmKpvFzIIMap?usp=drive_link) and put under the folder `weights/` (e.g. `./weights/23-36-37`). Below table compares the differences among some representative models of varying sizes from our trained family. They are sorted from slowest to fastest, with accuracy descending.
+download from [here](https://drive.google.com/drive/folders/1HuTt7UIp7gQsMiDvJwVuWmKpvFzIIMap?usp=drive_link) and put under the folder `weights/` (e.g. `./weights/23-36-37`). Below table compares the differences among some representative models of varying sizes from our trained family. They are sorted from slowest to fastest, with accuracy descending, where runtime is profiled on GPU 3090, image size 640x480.
 
 To trade-off speed and accuracy, there are two options:
 1) Try with different checkpoints.
 2) Tune the config flags (see explanations in the "Run demo" section below).
 
-| Checkpoint     |
-|---------------|
-| `23-36-37`    |
-| `20-26-39`    |
-| `00-04-56`    |
-| `20-30-48`    |
+| Checkpoint     | valid_iters | Runtime-Pytorch (ms) | Runtime-TRT (ms) | Peak Memory (MB) |
+|---------------|-------------|-------------|-----------------|-----------------|
+| `23-36-37`    | 8           | 49.4        | 23.4            | 653             |
+| `23-36-37`    | 4           | 41.1        | 18.4            | 653             |
+| `20-26-39`    | 8           | 43.6        | 19.4            | 651             |
+| `20-26-39`    | 4           | 37.5        | 16.4            | 651             |
+| `20-30-48`    | 8           | 38.4        | 16.6            | 646             |
+| `20-30-48`    | 4           | 29.3        | 14.0            | 646             |
 
 # Run demo
 ```
